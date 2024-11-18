@@ -14,10 +14,12 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
+import SearchBar from "./utils/SearchBar"
 
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
 
   const { likeCount } = useLikes();
 
@@ -113,13 +115,16 @@ export default function Header() {
         <div className="hidden md:flex items-center space-x-4 text-blue">
           <Button variant="ghost" className="px-0 lg:px-2">
             <User className="h-5 w-5" />
-            <span className="lg:block hidden">
-            Login / Register
-            </span>
+            <span className="lg:block hidden">Login / Register</span>
           </Button>
-          <Button variant="ghost" size="icon">
+          <Button
+            onClick={() => setIsSearchOpen(!isSearchOpen)}
+            variant="ghost"
+            size="icon"
+          >
             <Search className="h-5 w-5" />
           </Button>
+          {isSearchOpen && <SearchBar />}
           <Button variant="ghost" size="icon">
             <ShoppingCart className="h-5 w-5" />1
           </Button>
@@ -134,7 +139,11 @@ export default function Header() {
           className="md:hidden"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
-          { !isMenuOpen ? <Menu className="h-5 w-5" /> : <X className="h-5 w-5" />}
+          {!isMenuOpen ? (
+            <Menu className="h-5 w-5" />
+          ) : (
+            <X className="h-5 w-5" />
+          )}
         </Button>
       </div>
       {isMenuOpen && (
@@ -158,24 +167,28 @@ export default function Header() {
             <Link href="/" className="text-gray-600 hover:text-blue-600">
               Pages
             </Link>
-          <Button variant="ghost" className="text-blue hover:text-blue">
-            <User className="h-5 w-5" />
-            Login / Register
-          </Button>
+            <Button variant="ghost" className="text-blue hover:text-blue">
+              <User className="h-5 w-5" />
+              Login / Register
+            </Button>
           </nav>
-          <div className="mt-4 flex justify-around text-blue mx-8">
-            <Button variant="ghost" size="icon">
+          <div className="mt-4 flex justify-around text-blue mx-8 mb-4">
+            <Button
+              onClick={() => setIsSearchOpen(!isSearchOpen)}
+              variant="ghost"
+              size="icon"
+            >
               <Search className="h-5 w-5" />
             </Button>
             <Button variant="ghost" size="icon">
-              <ShoppingCart className="h-5 w-5" />
-              1
+              <ShoppingCart className="h-5 w-5" />1
             </Button>
             <Button variant="ghost" size="icon">
               <Heart className="h-5 w-5" />
               {likeCount > 0 && likeCount}
             </Button>
           </div>
+          {isSearchOpen && <SearchBar />}
         </div>
       )}
     </header>
