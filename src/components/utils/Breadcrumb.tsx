@@ -29,7 +29,7 @@ export const Breadcrumb = ({ className, items, separator, ...props }: Breadcrumb
           <BreadcrumbLink href="/">Home</BreadcrumbLink>
         </BreadcrumbItem>
         {breadcrumbItems?.map((item, index) => (
-          <React.Fragment key={item.href || item.label}>
+          <React.Fragment key={index}>
             <BreadcrumbSeparator>
               {separator || <ChevronRight className="h-4 w-4" />}
             </BreadcrumbSeparator>

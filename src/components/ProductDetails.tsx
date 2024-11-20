@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Image from "next/image"
-import { Star, ShoppingCart, Search, Heart, Eye } from 'lucide-react'
+import { Star, ShoppingCart, Heart, Eye } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import {
